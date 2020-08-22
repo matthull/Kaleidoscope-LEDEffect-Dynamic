@@ -17,8 +17,7 @@
 #pragma once
 
 #include "Kaleidoscope-LEDControl.h"
-
-extern uint8_t pywalLeftr;
+#include <Kaleidoscope-LEDEffects.h>
 
 namespace kaleidoscope {
 namespace plugin {
@@ -33,6 +32,18 @@ class LEDDynamic : public Plugin,
   }
   void update_delay(uint8_t delay) {
     update_delay_ = delay;
+  }
+
+  void set_left_color(cRGB col) {
+    left_color_ = col;
+  }
+
+  void set_bottom_color(cRGB col) {
+    bottom_color_ = col;
+  }
+
+  void set_right_color(cRGB col) {
+    right_color_ = col;
   }
 
   // This class' instance has dynamic lifetime
@@ -61,6 +72,9 @@ class LEDDynamic : public Plugin,
 
   uint8_t r_, g_, b_;
   uint8_t update_delay_ = 150;
+  cRGB left_color_ = CRGB(127, 0, 0);
+  cRGB bottom_color_ = CRGB(0, 0, 127);
+  cRGB right_color_ = CRGB(0, 127, 0);
 };
 }
 }
